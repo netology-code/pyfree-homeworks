@@ -49,7 +49,7 @@ def add(message):
     bot.send_message(message.chat.id, f'Задача {task} добавлена на дату {date}')
 
 
-@bot.message_handler(commands=['print'])
+@bot.message_handler(commands=['show'])
 def print_(message):
     date = message.text.split()[1].lower()
     if date in todos:
