@@ -55,7 +55,7 @@ def add(message):
 @bot.message_handler(commands=['print'])
 def print_(message):
     # TODO: 2
-    dates = message.text.split()[1].lower().split()
+    dates = message.text.split(maxsplit=1)[1].lower().split()
     response  = ''
     for date in dates:
         tasks = todos.get(date)
