@@ -14,7 +14,7 @@ todos = dict()
 
 HELP = '''
 Список доступных команд:
-* print  - напечать все задачи на заданную дату
+* show  - напечать все задачи на заданную дату
 * todo - добавить задачу
 * random - добавить на сегодня случайную задачу
 * help - Напечатать help
@@ -50,7 +50,7 @@ def add(message):
 
 
 @bot.message_handler(commands=['show'])
-def print_(message):
+def show(message):
     date = message.text.split()[1].lower()
     if date in todos:
         tasks = ''
