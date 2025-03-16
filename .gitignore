@@ -1,0 +1,7 @@
+# GIGA IDE
+.gigaide/
+.idea/
+pyfree-homeworks.iml
+
+# Phyton
+venv/
