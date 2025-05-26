@@ -14,9 +14,10 @@ todos = dict()
 
 HELP = '''
 Список доступных команд:
-* print  - напечать все задачи на заданную дату
+* print  - напечатать все задачи на заданную дату
 * add - добавить задачу
 * random - добавить на сегодня случайную задачу
+* all - вывод всех заданий для всех дат
 * help - Напечатать help
 '''
 
@@ -55,16 +56,27 @@ def add(message):
 
 @bot.message_handler(commands=['print'])
 def print_(message):
-    # TODO: 2
+    # TODO: 2 и 3
     dates = message.text.split(maxsplit=1)[1].lower().split()
     response  = ''
     for date in dates:
         tasks = todos.get(date)
-        response += f'{date}: \n'
+        response += f'*{date}*: \n'
         for task in tasks:
-            response += f'[ ] {task}\n'
+            response += f'@{task}\n'
         response += '\n'
-    bot.send_message(message.chat.id, response)
+    bot.send_message(message.chat.id, response, parse_mode='MarkdownV2') # TODO: 5
+
+
+@bot.message_handler(commands=['all'])
+def all_(message): # TODO: 4
+    response  = ''
+    for date, tasks in todos.items():
+        response += f'*{date}*: \n'
+        for task in tasks:
+            response += f'@{task}\n'
+        response += '\n'
+    bot.send_message(message.chat.id, response, parse_mode='MarkdownV2') # TODO: 5
 
 
 bot.polling(none_stop=True)
